@@ -95,6 +95,11 @@ inoremap jk <esc>
 " beter paste ,p
 map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
 
+" better buffer cicle (Tab and Shift+Tab)
+nnoremap <S-Tab> :bprevious<CR>
+nnoremap <Tab> :bnext<CR>
+
+
 " Disable arrow keys (hardcore)
 map  <up>    <nop>
 imap <up>    <nop>
