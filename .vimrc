@@ -17,7 +17,7 @@ filetype plugin indent on
 " --------------------
 syntax enable
 let g:hybrid_use_iTerm_colors = 1
-colorscheme hybrid
+colorscheme lucius
 
 
 
@@ -98,6 +98,9 @@ map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
 " better buffer cicle (Tab and Shift+Tab)
 nnoremap <S-Tab> :bprevious<CR>
 nnoremap <Tab> :bnext<CR>
+
+" remove whitespace
+nnoremap <Leader>rws :%s/\s\+$//e<CR>
 
 
 " Disable arrow keys (hardcore)
