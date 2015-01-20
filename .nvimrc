@@ -1,23 +1,23 @@
-" vi compatibility
-" --------------------
-set nocompatible
 set encoding=utf-8
 
-
-
-" pathogen
+" Plugins
 " --------------------
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
-filetype plugin indent on
+call plug#begin()
+"Status Bar
+Plug 'bling/vim-airline'
+Plug 'tpope/vim-fugitive'
+"Interaction Plugins
+Plug 'kien/ctrlp.vim'
+"Colors
+Plug 'whatyouhide/vim-gotham'
+call plug#end()
 
 
 
 " syntax highlighting
 " --------------------
 syntax enable
-let g:hybrid_use_iTerm_colors = 1
-colorscheme lucius
+colorscheme gotham
 
 
 
@@ -27,6 +27,7 @@ set laststatus=2 " show status bar
 set noshowmode " dont show duplicated image
 set shortmess=atI " abr and disable splash screen
 set showcmd " show commands
+let g:airline_powerline_fonts = 1 " testing
 
 
 
@@ -34,6 +35,7 @@ set showcmd " show commands
 " --------------------
 set hidden " show hidden files
 set autoread " reload files
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git' " ignore ctrlp
 
 
 
@@ -59,8 +61,7 @@ let mapleader = ',' " because everyone does this
 set scrolloff=3 " start scroll earlier
 set ignorecase " Ignore case when searching...
 set smartcase " ...except if we input a capital letter
-" line ending movement wrap
-set backspace=indent,eol,start
+set backspace=indent,eol,start " line ending movement wrap
 set whichwrap=h,l,b,<,>,~,[,]
 set cursorline "highlight current line
 
@@ -82,7 +83,7 @@ autocmd BufRead,BufNewFile *.scss set filetype=css
 
 " Key mappings
 " --------------------
-map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+map <silent> <leader>V :source ~/.nvimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 " reload .vimrc
 
 command! W  write " :W to do the same as :w
