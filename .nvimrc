@@ -7,9 +7,11 @@ call plug#begin()
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-fugitive'
 "Interaction Plugins
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+"Syntax
+Plug 'pangloss/vim-javascript'
 "Colors
-Plug 'whatyouhide/vim-gotham'
+Plug 'w0ng/vim-hybrid'
 call plug#end()
 
 
@@ -17,7 +19,11 @@ call plug#end()
 " syntax highlighting
 " --------------------
 syntax enable
-colorscheme gotham
+let g:hybrid_use_Xresources = 1
+colorscheme hybrid
+let g:airline_theme='bw'
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
 
 
 
@@ -27,7 +33,6 @@ set laststatus=2 " show status bar
 set noshowmode " dont show duplicated image
 set shortmess=atI " abr and disable splash screen
 set showcmd " show commands
-let g:airline_powerline_fonts = 1 " testing
 
 
 
@@ -84,10 +89,11 @@ autocmd BufRead,BufNewFile *.scss set filetype=css
 
 " Key mappings
 " --------------------
-map <silent> <leader>V :source ~/.nvimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 " reload .vimrc
+map <silent> <leader>V :source ~/.nvimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
-command! W  write " :W to do the same as :w
+":W to do the same as :w
+command! W  write
 
 " jj to throw you into normal mode from insert mode
 inoremap jj <esc>
