@@ -23,7 +23,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-rhubarb'
 
 "Interaction Plugins
-"Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-vinegar'
@@ -38,9 +37,11 @@ Plug 'w0rp/ale'
 Plug 'editorconfig/editorconfig-vim'
 
 "Lang Server
-"Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'autozimu/LanguageClient-neovim', {
+"    \ 'branch': 'next',
+"    \ 'do': 'bash install.sh',
+"    \ }
 "Plug 'roxma/nvim-completion-manager'
-"Plug 'Shougo/echodoc.vim'
 
 "Colors
 Plug 'w0ng/vim-hybrid'
@@ -57,14 +58,10 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 " linting
 " --------------------
-
 "let g:LanguageClient_serverCommands = {
-"    \ 'javascript': ['/Users/joao.campinhos/testes/vscode-eslint/server/out/server.js'],
-"    \ 'css': ['css-languageserver', '--stdio']
+"    \ 'javascript': ['javascript-typescript-stdio'],
+"    \ 'javascript.jsx': ['javascript-typescript-stdio'],
 "    \ }
-
-" Automatically start language servers.
-"let g:LanguageClient_autoStart = 1
 
 "nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 "nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
@@ -74,10 +71,10 @@ let g:ale_linters['javascript'] = ['eslint']
 let g:ale_linters['css'] = ['stylelint']
 
 let g:ale_fixers = {}
-let g:ale_fixers['javascript'] = ['prettier']
+let g:ale_fixers['javascript'] = ['eslint']
 
-" let g:ale_fix_on_save = 1
-let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_fix_on_save = 1
+"let g:ale_javascript_prettier_use_local_config = 1
 
 " syntax highlighting
 " --------------------
@@ -110,8 +107,7 @@ set hidden " show hidden files
 set autoread " reload files
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git' " ignore ctrlp
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git \ls-files -oc --exclude-standard']
-
-
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 " spaces and identation
 " 4 spaces
