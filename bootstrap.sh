@@ -18,3 +18,14 @@ brew instal tmux
 brew instal zsh
 brew instal zsh-completions
 brew instal zsh-syntax-highlighting
+brew instal yarn
+brew instal carthage
+brew install thefuck
+
+brew cask install kitty
+brew cask install google-chrome
+brew cask install react-native-debugger
+brew cask install slack
+brew cask install android-studio
+
+stow stuff
