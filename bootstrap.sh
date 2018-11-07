@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-# Install command-line tools using Homebrew.
+# install brew
+
 brew update
 
 brew upgrade
@@ -29,5 +30,8 @@ brew cask install slack
 brew cask install android-studio
 brew cask install spotify
 brew cask install visual-studio-code
+brew cask install fliqlo
+
+# pure prompt
 
 # stow stuff
