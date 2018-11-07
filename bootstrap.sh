@@ -27,5 +27,7 @@ brew cask install google-chrome
 brew cask install react-native-debugger
 brew cask install slack
 brew cask install android-studio
+brew cask install spotify
+brew cask install visual-studio-code
 
-stow stuff
+# stow stuff
