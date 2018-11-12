@@ -35,6 +35,7 @@ Plug 'cakebaker/scss-syntax.vim'
 Plug 'mxw/vim-jsx'
 Plug 'w0rp/ale'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'leafgarland/typescript-vim'
 
 "Lang Server
 "Plug 'autozimu/LanguageClient-neovim', {
@@ -52,9 +53,7 @@ call plug#end()
 " Git Stuff
 "--------------------
 
-let g:fugitive_gitlab_domains = ['http://gitlab', 'http://gitlab.feedzai.com']
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
-
 
 " linting
 " --------------------
@@ -69,12 +68,14 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 let g:ale_linters = {}
 let g:ale_linters['javascript'] = ['eslint']
 let g:ale_linters['css'] = ['stylelint']
+let g:ale_linters['typescript'] = ['tslint', 'tsserver']
 
 let g:ale_fixers = {}
 let g:ale_fixers['javascript'] = ['eslint']
+let g:ale_fixers['typescript'] = ['prettier', 'tslint']
 
 let g:ale_fix_on_save = 1
-"let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_javascript_prettier_use_local_config = 1
 
 " syntax highlighting
 " --------------------
