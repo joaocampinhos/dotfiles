@@ -5,10 +5,12 @@ export PATH=$PHABRICATOR_TOOLS_PATH/phabricator/arcanist/bin/:$PATH
 export EDITOR=nvim
 
 autoload -U promptinit; promptinit
+autoload -Uz compinit; compinit
 
 prompt pure
 
 PURE_PROMPT_SYMBOL='ʕ•ᴥ•ʔ'
+PURE_PROMPT_VICMD_SYMBOL='(◡_◡)ᕤ'
 
 alias ls='ls -G'
 alias la='ls -a'
@@ -34,6 +36,7 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
 fpath=(/usr/local/share/zsh-completions $fpath)
 
+kitty + complete setup zsh | source /dev/stdin
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
