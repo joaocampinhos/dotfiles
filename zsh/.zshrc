@@ -28,6 +28,8 @@ alias vstatus='vim `git status --porcelain | sed "s/^ M //g" | sed  "s/^?? //g" 
 alias ports='sudo lsof -i -n -P | grep TCP'
 alias contents='ag --nobreak --nonumbers --noheading . | fzf'
 
+export FZF_DEFAULT_COMMAND='rg --files'
+
 alias lock='open -a ScreenSaverEngine'
 
 eval $(thefuck --alias)
@@ -42,3 +44,4 @@ kitty + complete setup zsh | source /dev/stdin
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export PATH="/usr/local/opt/docker@1.11/bin:$PATH"
+

@@ -66,7 +66,7 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 "nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 
 let g:ale_linters = {}
-let g:ale_linters['javascript'] = ['eslint']
+let g:ale_linters['javascript'] = ['eslint', 'tsserver']
 let g:ale_linters['css'] = ['stylelint']
 let g:ale_linters['typescript'] = ['tslint', 'tsserver']
 
@@ -106,9 +106,13 @@ let g:airline#extensions#ale#enabled = 1
 " --------------------
 set hidden " show hidden files
 set autoread " reload files
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git' " ignore ctrlp
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git \ls-files -oc --exclude-standard']
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
+" Hide statusline of terminal buffer
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
 
 " spaces and identation
 " 4 spaces
@@ -173,6 +177,8 @@ nmap <leader>k :ALEPrevioustWrap<cr>
 nmap <leader>j :ALENextWrap<cr>
 nmap <leader>n :GitGutterPrevHunk<cr>
 nmap <leader>m :GitGutterNextHunk<cr>
+nmap <leader>d :ALEGoToDefinition<cr>
+nmap <leader>d :ALEHover<cr>
 
 " reload .vimrc
 map <silent> <leader>V :source ~/.config/nvim/init.vim<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
