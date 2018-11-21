@@ -9,7 +9,7 @@ brew upgrade
 brew instal git
 brew instal git-extras
 brew instal grep
-brew instal neovim
+brew instal --HEAD neovim
 brew instal node
 brew instal ranger
 brew instal stow
@@ -22,6 +22,12 @@ brew instal zsh-syntax-highlighting
 brew instal yarn
 brew instal carthage
 brew install thefuck
+
+# pip
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+sudo python get-pip.py
+sudo pip install pillow
+
 
 brew cask install kitty
 brew cask install google-chrome

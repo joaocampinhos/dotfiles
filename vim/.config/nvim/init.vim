@@ -26,7 +26,6 @@ Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-vinegar'
-"Plug 'hkupty/nvimux'
 
 "Syntax
 Plug 'pangloss/vim-javascript'
@@ -36,13 +35,6 @@ Plug 'mxw/vim-jsx'
 Plug 'w0rp/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'leafgarland/typescript-vim'
-
-"Lang Server
-"Plug 'autozimu/LanguageClient-neovim', {
-"    \ 'branch': 'next',
-"    \ 'do': 'bash install.sh',
-"    \ }
-"Plug 'roxma/nvim-completion-manager'
 
 "Colors
 Plug 'w0ng/vim-hybrid'
@@ -57,14 +49,6 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 " linting
 " --------------------
-"let g:LanguageClient_serverCommands = {
-"    \ 'javascript': ['javascript-typescript-stdio'],
-"    \ 'javascript.jsx': ['javascript-typescript-stdio'],
-"    \ }
-
-"nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-"nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-
 let g:ale_linters = {}
 let g:ale_linters['javascript'] = ['eslint', 'tsserver']
 let g:ale_linters['css'] = ['stylelint']
@@ -101,17 +85,17 @@ set showcmd " show commands
 
 let g:airline#extensions#ale#enabled = 1
 
+" Hide statusline of terminal buffer
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
 
 " files
 " --------------------
 set hidden " show hidden files
 set autoread " reload files
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
-
-" Hide statusline of terminal buffer
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
 
 " spaces and identation
@@ -145,6 +129,8 @@ set splitright "split to teh right!
 
 " linter isht
 " --------------------
+" buggy as hell. disable for now. but SeemsGood
+" let g:ale_virtualtext_cursor = 1
 let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '⚠'
 hi ALEErrorSign ctermfg=1
