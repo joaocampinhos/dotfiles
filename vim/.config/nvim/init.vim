@@ -36,6 +36,11 @@ Plug 'w0rp/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'leafgarland/typescript-vim'
 
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
 "Colors
 Plug 'w0ng/vim-hybrid'
 
@@ -50,7 +55,7 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 " linting
 " --------------------
 let g:ale_linters = {}
-let g:ale_linters['javascript'] = ['eslint', 'tsserver']
+let g:ale_linters['javascript'] = ['eslint']
 let g:ale_linters['css'] = ['stylelint']
 let g:ale_linters['typescript'] = ['tslint', 'tsserver']
 
@@ -60,6 +65,11 @@ let g:ale_fixers['typescript'] = ['prettier', 'tslint']
 
 let g:ale_fix_on_save = 1
 let g:ale_javascript_prettier_use_local_config = 1
+
+let g:LanguageClient_serverCommands = {
+    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['/usr/local/bin/javascript-typescript-stdio'],
+    \ }
 
 " syntax highlighting
 " --------------------
@@ -143,6 +153,10 @@ set relativenumber
 set number
 
 
+" Mouse
+" --------------------
+set mouse=a
+
 
 " filetypes
 " --------------------
@@ -163,8 +177,11 @@ nmap <leader>k :ALEPrevioustWrap<cr>
 nmap <leader>j :ALENextWrap<cr>
 nmap <leader>n :GitGutterPrevHunk<cr>
 nmap <leader>m :GitGutterNextHunk<cr>
-nmap <leader>d :ALEGoToDefinition<cr>
-nmap <leader>d :ALEHover<cr>
+"nmap <leader>d :ALEGoToDefinition<cr>
+"nmap <leader>h :ALEHover<cr>
+
+nmap <leader>d :call LanguageClient#textDocument_definition()<CR>
+nmap <leader>h :call LanguageClient#textDocument_hover()<CR>
 
 " reload .vimrc
 map <silent> <leader>V :source ~/.config/nvim/init.vim<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>

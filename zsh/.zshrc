@@ -10,7 +10,7 @@ autoload -Uz compinit; compinit
 prompt pure
 
 PURE_PROMPT_SYMBOL='ʕ•ᴥ•ʔ'
-PURE_PROMPT_VICMD_SYMBOL='(◡_◡)ᕤ'
+PURE_PROMPT_VICMD_SYMBOL='ʕ◡ᴥ◡ʔ'
 
 alias ls='ls -G'
 alias la='ls -a'
@@ -27,6 +27,8 @@ alias vimstatus='vim `git diff --name-only`'
 alias vstatus='vim `git status --porcelain | sed "s/^ M //g" | sed  "s/^?? //g" | grep -v "D "`'
 alias ports='sudo lsof -i -n -P | grep TCP'
 alias contents='ag --nobreak --nonumbers --noheading . | fzf'
+
+alias go='cd ~/sky/q-go-desktop'
 
 export FZF_DEFAULT_COMMAND='rg --files'
 
