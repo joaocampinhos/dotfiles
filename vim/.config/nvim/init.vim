@@ -41,11 +41,14 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
 "Colors
 Plug 'w0ng/vim-hybrid'
 
 call plug#end()
 
+let g:deoplete#enable_at_startup = 1
 
 " Git Stuff
 "--------------------
