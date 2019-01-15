@@ -22,6 +22,7 @@ brew instal zsh-syntax-highlighting
 brew instal yarn
 brew instal carthage
 brew install thefuck
+brew install gnupg
 
 # pip
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
