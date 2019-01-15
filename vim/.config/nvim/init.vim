@@ -36,19 +36,19 @@ Plug 'w0rp/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'leafgarland/typescript-vim'
 
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+"Plug 'autozimu/LanguageClient-neovim', {
+"    \ 'branch': 'next',
+"    \ 'do': 'bash install.sh',
+"    \ }
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 "Colors
 Plug 'w0ng/vim-hybrid'
 
 call plug#end()
 
-let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_at_startup = 1
 
 " Git Stuff
 "--------------------
@@ -69,10 +69,10 @@ let g:ale_fixers['typescript'] = ['prettier', 'tslint']
 let g:ale_fix_on_save = 1
 let g:ale_javascript_prettier_use_local_config = 1
 
-let g:LanguageClient_serverCommands = {
-    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['/usr/local/bin/javascript-typescript-stdio'],
-    \ }
+"let g:LanguageClient_serverCommands = {
+"    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+"    \ 'javascript.jsx': ['/usr/local/bin/javascript-typescript-stdio'],
+"    \ }
 
 " syntax highlighting
 " --------------------
@@ -152,7 +152,6 @@ hi ALEWarningSign ctermfg=3
 
 " hybrid mode
 " --------------------
-set relativenumber
 set number
 
 
