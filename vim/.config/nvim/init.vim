@@ -138,6 +138,7 @@ set whichwrap=h,l,b,<,>,~,[,]
 set cursorline "highlight current line
 set updatetime=250 "FASTAAR!!
 set splitright "split to teh right!
+set inccommand=split "preview for replace
 
 
 " linter isht
