@@ -23,6 +23,7 @@ brew instal yarn
 brew instal carthage
 brew install thefuck
 brew install gnupg
+brew install rg
 
 # pip
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py

@@ -1,7 +1,7 @@
 export PATH=/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome:/usr/local/bin:/usr/local/sbin:~/bin:$PATH
 export PHABRICATOR_TOOLS_PATH=~/bin/phabricator-tools
 export DEVELOPMENT_TOOLS_PATH=~/bin/phabricator-tools
-export PATH=$PHABRICATOR_TOOLS_PATH/phabricator/arcanist/bin/:$PATH
+export PATH=$PHABRICATOR_TOOLS_PATH/phabricator/arcanist/bin/:$PATH:/opt/webOS_TV_SDK/CLI/bin
 export EDITOR=nvim
 
 autoload -U promptinit; promptinit

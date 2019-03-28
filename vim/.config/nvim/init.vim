@@ -32,10 +32,11 @@ Plug 'pangloss/vim-javascript'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'mxw/vim-jsx'
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'leafgarland/typescript-vim'
 
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 "Plug 'autozimu/LanguageClient-neovim', {
 "    \ 'branch': 'next',
 "    \ 'do': 'bash install.sh',
@@ -57,17 +58,17 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 " linting
 " --------------------
-let g:ale_linters = {}
-let g:ale_linters['javascript'] = ['eslint']
-let g:ale_linters['css'] = ['stylelint']
-let g:ale_linters['typescript'] = ['tslint', 'tsserver']
+"let g:ale_linters = {}
+"let g:ale_linters['javascript'] = ['eslint']
+"let g:ale_linters['css'] = ['stylelint']
+"let g:ale_linters['typescript'] = ['tslint', 'tsserver']
 
-let g:ale_fixers = {}
-let g:ale_fixers['javascript'] = ['eslint']
-let g:ale_fixers['typescript'] = ['prettier', 'tslint']
+"let g:ale_fixers = {}
+"let g:ale_fixers['javascript'] = ['eslint']
+"let g:ale_fixers['typescript'] = ['prettier', 'tslint']
 
-let g:ale_fix_on_save = 1
-let g:ale_javascript_prettier_use_local_config = 1
+"let g:ale_fix_on_save = 1
+"let g:ale_javascript_prettier_use_local_config = 1
 
 "let g:LanguageClient_serverCommands = {
 "    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
@@ -192,6 +193,9 @@ map <silent> <leader>V :source ~/.config/nvim/init.vim<CR>:filetype detect<CR>:e
 ":W to do the same as :w
 command! W  write
 
+":sw to do :w with sudo
+command! Ws execute 'silent! write !sudo tee % >/dev/null' | edit!
+
 " jj to throw you into normal mode from insert mode
 inoremap jj <esc>
 " jk to throw you into normal mode from insert mode
@@ -206,6 +210,12 @@ nnoremap <Tab> :bnext<CR>
 
 " remove whitespace
 nnoremap <Leader>rws :%s/\s\+$//e<CR>
+
+" le coc
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 
 " Disable arrow keys (hardcore)
