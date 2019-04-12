@@ -47,3 +47,6 @@ kitty + complete setup zsh | source /dev/stdin
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export PATH="/usr/local/opt/docker@1.11/bin:$PATH"
 
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
