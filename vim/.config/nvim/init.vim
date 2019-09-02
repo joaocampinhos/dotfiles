@@ -12,7 +12,8 @@ endif
 call plug#begin()
 
 "Status Bar
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'https://gist.github.com/c5b864564727b40d2c0f.git',
     \ { 'as': 'bw', 'do': 'mkdir -p autoload/airline/themes; cp -f *.vim autoload/airline/themes' }
 
@@ -32,6 +33,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'mxw/vim-jsx'
+Plug 'ianks/vim-tsx'
 " Plug 'w0rp/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'leafgarland/typescript-vim'
@@ -45,6 +47,7 @@ Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 "Colors
+Plug 'kjssad/quantum.vim'
 Plug 'w0ng/vim-hybrid'
 
 call plug#end()
@@ -56,39 +59,16 @@ call plug#end()
 
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
-" linting
-" --------------------
-"let g:ale_linters = {}
-"let g:ale_linters['javascript'] = ['eslint']
-"let g:ale_linters['css'] = ['stylelint']
-"let g:ale_linters['typescript'] = ['tslint', 'tsserver']
-
-"let g:ale_fixers = {}
-"let g:ale_fixers['javascript'] = ['eslint']
-"let g:ale_fixers['typescript'] = ['prettier', 'tslint']
-
-"let g:ale_fix_on_save = 1
-"let g:ale_javascript_prettier_use_local_config = 1
-
-"let g:LanguageClient_serverCommands = {
-"    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-"    \ 'javascript.jsx': ['/usr/local/bin/javascript-typescript-stdio'],
-"    \ }
-
 " syntax highlighting
 " --------------------
 syntax enable
-let g:hybrid_custom_term_colors = 1
+set termguicolors
 set background=dark
-colorscheme hybrid
-let g:airline_theme='bw'
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
+let g:hybrid_custom_term_colors = 1
+colorscheme quantum
 
 let g:javascript_plugin_jsdoc = 1
-
 let g:jsx_ext_required = 0
-
 
 " status bar  (airline)
 " --------------------
@@ -97,18 +77,28 @@ set noshowmode " dont show duplicated image
 set shortmess=atI " abr and disable splash screen
 set showcmd " show commands
 
-let g:airline#extensions#ale#enabled = 1
+let g:airline_theme='peaksea'
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+
+let g:airline#extensions#disable_rtp_load = 1
+let g:airline_extensions = ['branch', 'hunks', 'coc']
+
+let g:airline#extensions#hunks#non_zero_only = 1
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+let g:airline_section_z = airline#section#create(['%l:%c'])
+
+let s:WI = [ '#E4E4E4' , '#4E4E4E' , 234 , 215 , '' ]
+"let g:airline#themes#peaksea#palette.normal.airline_warning = [
+        "\ s:WI[0], s:WI[1], s:WI[2], s:WI[3]
+        "\ ]
+
+let g:airline#themes#peaksea#palette.normal.airline_error = g:airline#themes#peaksea#palette.normal.airline_warning
 
 " Hide statusline of terminal buffer
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-
-let g:airline#extensions#disable_rtp_load = 1
-let g:airline_extensions = ['branch', 'hunks', 'coc']
-
-let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
 
 " files
@@ -146,16 +136,6 @@ set cursorline "highlight current line
 set updatetime=250 "FASTAAR!!
 set splitright "split to teh right!
 set inccommand=split "preview for replace
-
-
-" linter isht
-" --------------------
-" buggy as hell. disable for now. but SeemsGood
-" let g:ale_virtualtext_cursor = 1
-let g:ale_sign_error = '✖'
-let g:ale_sign_warning = '⚠'
-hi ALEErrorSign ctermfg=1
-hi ALEWarningSign ctermfg=3
 
 
 " hybrid mode
@@ -238,12 +218,19 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 "nmap <leader>a  <Plug>(coc-codeaction-selected)
 "nmap <leader>ac  <Plug>(coc-codeaction)
 "nmap <leader>qf  <Plug>(coc-fix-current)
-"nnoremap <silent> <space>a  :<C-u>CocList diagnostics<CR>
-"nnoremap <silent> <space>e  :<C-u>CocList extensions<CR>
-"nnoremap <silent> <space>c  :<C-u>CocList commands<CR>
-"nnoremap <silent> <space>o  :<C-u>CocList outline<CR>
-"nnoremap <silent> <space>s  :<C-u>CocList -I symbols<CR>
-"nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+" Using CocList
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 
 
@@ -268,7 +255,7 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
-autocmd CursorHold * silent call CocActionAsync('highlight')                   " Highlight symbol under cursor on CursorHold
+"autocmd CursorHold * silent call CocActionAsync('highlight')                   " Highlight symbol under cursor on CursorHold
 augroup mygroup
   autocmd!
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected') " Setup formatexpr specified filetype(s).
@@ -277,3 +264,36 @@ augroup end
 command! -nargs=0 Format :call CocAction('format')                             " Use `:Format` for format current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)                   " Use `:Fold` for fold current buffer
 autocmd FileType json syntax match Comment +\/\/.\+$+                          " COC JSON - better comment rendering
+
+let g:netrw_fastbrowse        = 0
+
+" WIP TERMINAL STUFFS
+
+" Maps ESC to exit terminal's insert mode
+if has('nvim')
+    tnoremap <Esc> <C-\><C-n>
+endif
+
+" Maps ctrl-b + c to open a new tab window
+nnoremap <C-b>c :tabnew +terminal<CR>
+tnoremap <C-b>c <C-\><C-n>:tabnew +terminal<CR>
+
+" Maps ctrl-b + " to open a new horizontal split with a terminal
+nnoremap <C-b>" :new +terminal<CR>
+tnoremap <C-b>" <C-\><C-n>:new +terminal<CR>
+
+" Maps ctrl-b + % to open a new vertical split with a terminal
+nnoremap <C-b>% :vnew +terminal<CR>
+tnoremap <C-b>% <C-\><C-n>:vnew +terminal<cr>
+
+command! T :new +terminal<CR>
+
+augroup neovim_terminal
+    autocmd!
+
+    " Enter Terminal-mode (insert) automatically
+    autocmd TermOpen * startinsert
+
+    " Disables number lines on terminal buffers
+    autocmd TermOpen * :set nonumber norelativenumber
+augroup END

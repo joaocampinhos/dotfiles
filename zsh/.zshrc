@@ -23,12 +23,10 @@ alias cm='cd ~/feedzai/case-manager'
 alias ui='cd ~/feedzai/ui'
 alias cmf='cd /Users/joao.campinhos/feedzai/case-manager/alert-manager-web/src/main/webapp'
 alias server='python -m SimpleHTTPServer 1337'
-alias vimstatus='vim `git diff --name-only`'
+alias vimstatus='vim -c "GFiles?"'
 alias vstatus='vim `git status --porcelain | sed "s/^ M //g" | sed  "s/^?? //g" | grep -v "D "`'
 alias ports='sudo lsof -i -n -P | grep TCP'
 alias contents='ag --nobreak --nonumbers --noheading . | fzf'
-
-alias go='cd ~/sky/q-go-desktop'
 
 export FZF_DEFAULT_COMMAND='rg --files'
 
@@ -50,3 +48,8 @@ export PATH="/usr/local/opt/docker@1.11/bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+export VOLTA_HOME="$HOME/.volta"
+[ -s "$VOLTA_HOME/load.sh" ] && . "$VOLTA_HOME/load.sh"
+
+export PATH="$VOLTA_HOME/bin:$PATH"

@@ -1,4 +1,9 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["css", "Markdown", "js"],
-  "eslint.autoFixOnSave": true
+  "coc.preferences.formatOnSaveFiletypes": ["css", "Markdown", "js", "ts", "tsx", "jsx", "typescript.tsx", "typescript"],
+  "eslint.autoFixOnSave": true,
+  "tslint.autoFixOnSave": true,
+  "diagnostic.errorSign": "✖",
+  "diagnostic.warningSign": "⚠",
+  "diagnostic.infoSign": "●",
+  "diagnostic.hintSign": "○"
 }
