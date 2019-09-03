@@ -24,6 +24,7 @@ brew instal carthage
 brew install thefuck
 brew install gnupg
 brew install rg
+brew install watchman
 
 # pip
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
@@ -39,6 +40,7 @@ brew cask install android-studio
 brew cask install spotify
 brew cask install visual-studio-code
 brew cask install fliqlo
+brew cask install transmission
 
 # pure prompt
 

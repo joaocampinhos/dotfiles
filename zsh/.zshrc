@@ -1,8 +1,11 @@
 export PATH=/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome:/usr/local/bin:/usr/local/sbin:~/bin:$PATH
-export PHABRICATOR_TOOLS_PATH=~/bin/phabricator-tools
-export DEVELOPMENT_TOOLS_PATH=~/bin/phabricator-tools
-export PATH=$PHABRICATOR_TOOLS_PATH/phabricator/arcanist/bin/:$PATH:/opt/webOS_TV_SDK/CLI/bin
 export EDITOR=nvim
+
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 autoload -U promptinit; promptinit
 autoload -Uz compinit; compinit
