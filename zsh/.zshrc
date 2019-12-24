@@ -1,4 +1,5 @@
 export PATH=/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome:/usr/local/bin:/usr/local/sbin:~/bin:$PATH
+export CHROME_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 export EDITOR=nvim
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
@@ -51,6 +52,8 @@ export PATH="/usr/local/opt/docker@1.11/bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+export PATH=$PATH:~/tizen-studio/tools/ide/bin:~/tizen-studio/tools/ide/bin/tizen:~/tizen-studio/tools
+export PATH="/opt/webOS_TV_SDK/CLI/bin:$PATH"
 
 export VOLTA_HOME="$HOME/.volta"
 [ -s "$VOLTA_HOME/load.sh" ] && . "$VOLTA_HOME/load.sh"

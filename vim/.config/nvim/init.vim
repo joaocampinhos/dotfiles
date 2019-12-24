@@ -29,30 +29,21 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-vinegar'
 
 "Syntax
-Plug 'pangloss/vim-javascript'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'cakebaker/scss-syntax.vim'
-Plug 'mxw/vim-jsx'
-Plug 'ianks/vim-tsx'
-" Plug 'w0rp/ale'
+Plug 'sheerun/vim-polyglot'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'leafgarland/typescript-vim'
 
+"IDE Stuffs
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
-"Plug 'autozimu/LanguageClient-neovim', {
-"    \ 'branch': 'next',
-"    \ 'do': 'bash install.sh',
-"    \ }
+Plug 'neovim/nvim-lsp'
 
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Sessions
+Plug 'tpope/vim-obsession'
 
 "Colors
 Plug 'kjssad/quantum.vim'
-Plug 'w0ng/vim-hybrid'
+" Plug 'w0ng/vim-hybrid'
 
 call plug#end()
-
-"let g:deoplete#enable_at_startup = 1
 
 " Git Stuff
 "--------------------
@@ -64,7 +55,6 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 syntax enable
 set termguicolors
 set background=dark
-let g:hybrid_custom_term_colors = 1
 colorscheme quantum
 
 let g:javascript_plugin_jsdoc = 1
@@ -78,6 +68,7 @@ set shortmess=atI " abr and disable splash screen
 set showcmd " show commands
 
 let g:airline_theme='peaksea'
+
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 
@@ -89,9 +80,6 @@ let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline_section_z = airline#section#create(['%l:%c'])
 
 let s:WI = [ '#E4E4E4' , '#4E4E4E' , 234 , 215 , '' ]
-"let g:airline#themes#peaksea#palette.normal.airline_warning = [
-        "\ s:WI[0], s:WI[1], s:WI[2], s:WI[3]
-        "\ ]
 
 let g:airline#themes#peaksea#palette.normal.airline_error = g:airline#themes#peaksea#palette.normal.airline_warning
 
@@ -116,10 +104,34 @@ set shiftwidth=4
 set tabstop=4
 set softtabstop=4
 set autoindent
-" show whitespace
 set list
 set listchars=tab:▸\ ,trail:·,extends:❯,precedes:❮
 
+" fzf popup WIP
+" --------------------
+"if has('nvim')
+"  let $FZF_DEFAULT_OPTS .= ' --layout=reverse'
+"
+"  function! FloatingFZF()
+"    let height = &lines
+"    let width = float2nr(&columns - (&columns * 2 / 10))
+"    let col = float2nr((&columns - width) / 2)
+"    let col_offset = &columns / 10
+"    let opts = {
+"          \ 'relative': 'editor',
+"          \ 'row': 1,
+"          \ 'col': col + col_offset,
+"          \ 'width': width * 2 / 1,
+"          \ 'height': height / 2,
+"          \ 'style': 'minimal'
+"          \ }
+"    let buf = nvim_create_buf(v:false, v:true)
+"    let win = nvim_open_win(buf, v:true, opts)
+"    call setwinvar(win, '&winhl', 'NormalFloat:TabLine')
+"  endfunction
+"
+"  let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+"endif
 
 
 " other stuff
@@ -136,10 +148,6 @@ set cursorline "highlight current line
 set updatetime=250 "FASTAAR!!
 set splitright "split to teh right!
 set inccommand=split "preview for replace
-
-
-" hybrid mode
-" --------------------
 set number
 
 
@@ -153,10 +161,8 @@ set mouse=a
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 
 
-
 " Key mappings
 " --------------------
-
 nnoremap <leader><enter> :Buffers<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>B :Buffers<CR>
@@ -165,8 +171,6 @@ nnoremap <leader>l :BLines<cr>
 nnoremap <leader>L :Lines<cr>
 nmap <leader>n :GitGutterPrevHunk<cr>
 nmap <leader>m :GitGutterNextHunk<cr>
-"nmap <leader>d :ALEGoToDefinition<cr>
-"nmap <leader>h :ALEHover<cr>
 
 nmap <leader>d :call LanguageClient#textDocument_definition()<CR>
 nmap <leader>h :call LanguageClient#textDocument_hover()<CR>
@@ -232,15 +236,13 @@ nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-
-
 " Disable arrow keys (hardcore)
 noremap <Up> <nop>
 noremap <Right> <nop>
 noremap <Down> <nop>
 noremap <Left> <nop>
 
-
+" BS EXPERIMENTAL STUFFS
 set updatetime=300                              " Smaller updatetime for CursorHold & CursorHoldI
 set shortmess+=c                                " don't give |ins-completion-menu| messages.
 set signcolumn=yes                              " always show signcolumns
@@ -265,13 +267,15 @@ command! -nargs=0 Format :call CocAction('format')                             "
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)                   " Use `:Fold` for fold current buffer
 autocmd FileType json syntax match Comment +\/\/.\+$+                          " COC JSON - better comment rendering
 
-let g:netrw_fastbrowse        = 0
+let g:netrw_fastbrowse=0
+let g:netrw_liststyle=3
 
 " WIP TERMINAL STUFFS
 
 " Maps ESC to exit terminal's insert mode
 if has('nvim')
-    tnoremap <Esc> <C-\><C-n>
+    au TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
+    au FileType fzf tunmap <buffer> <Esc>
 endif
 
 " Maps ctrl-b + c to open a new tab window
@@ -297,3 +301,8 @@ augroup neovim_terminal
     " Disables number lines on terminal buffers
     autocmd TermOpen * :set nonumber norelativenumber
 augroup END
+
+
+
+" NEW BUILT IN LSP
+" call nvim_lsp#setup("tsserver", {})
