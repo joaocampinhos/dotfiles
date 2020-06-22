@@ -34,14 +34,16 @@ Plug 'editorconfig/editorconfig-vim'
 
 "IDE Stuffs
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
-Plug 'neovim/nvim-lsp'
+"Plug 'neovim/nvim-lsp'
 
 "Sessions
 Plug 'tpope/vim-obsession'
 
 "Colors
-Plug 'kjssad/quantum.vim'
+" Plug 'kjssad/quantum.vim'
 " Plug 'w0ng/vim-hybrid'
+" Plug 'haishanh/night-owl.vim'
+Plug 'arzg/vim-substrata'
 
 call plug#end()
 
@@ -55,7 +57,8 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 syntax enable
 set termguicolors
 set background=dark
-colorscheme quantum
+" colorscheme quantum
+colorscheme substrata
 
 let g:javascript_plugin_jsdoc = 1
 let g:jsx_ext_required = 0
@@ -67,7 +70,7 @@ set noshowmode " dont show duplicated image
 set shortmess=atI " abr and disable splash screen
 set showcmd " show commands
 
-let g:airline_theme='peaksea'
+let g:airline_theme='tomorrow'
 
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''

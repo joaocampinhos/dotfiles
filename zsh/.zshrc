@@ -36,7 +36,7 @@ export FZF_DEFAULT_COMMAND='rg --files'
 
 alias lock='open -a ScreenSaverEngine'
 
-eval $(thefuck --alias)
+alias mckill='sudo /usr/local/McAfee/uninstall EPM'
 
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
