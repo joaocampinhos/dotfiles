@@ -1,17 +1,12 @@
 #!/usr/bin/env bash
 
 # NEOVIM
-cd $(mktemp -d)
+source $HOME/.nix-profile/etc/profile.d/nix.sh
+nix-env -iA nixpkgs.neovim > /tmp/lixo 2>&1
 
-curl -LO "https://github.com/neovim/neovim/releases/latest/download/nvim.appimage"
-chmod u+x nvim.appimage
-./nvim.appimage --appimage-extract >/dev/null
-mkdir -p /home/gitpod/.local/bin
-ln -s $(pwd)/squashfs-root/AppRun /home/gitpod/.local/bin/nvim
-#sudo ln -s $(pwd)/squashfs-root/AppRun /usr/bin/nvim
+cd $HOME/.dotfiles
+stow nvim -t $HOME
+stow nvchad-custom -t $HOME/.config/nvim/lua
 
-cd $(dirname $0)
-stow nvim -t ~
-stow nvchad-custom -t ~/.config/nvim/lua
 #cp -a nvim/. ~
 #cp -a nvchad-custom/. ~/.config/nvim/lua
