@@ -11,5 +11,7 @@ ln -s $(pwd)/squashfs-root/AppRun /home/gitpod/.local/bin/nvim
 #sudo ln -s $(pwd)/squashfs-root/AppRun /usr/bin/nvim
 
 cd $(dirname $0)
-cp -a nvim/. ~
-cp -a nvchad-custom/. ~/.config/nvim/lua
+stow nvim -t ~
+stow nvchad-custom -t ~/.config/nvim/lua
+#cp -a nvim/. ~
+#cp -a nvchad-custom/. ~/.config/nvim/lua
