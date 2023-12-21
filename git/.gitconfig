@@ -8,7 +8,7 @@
     b = "!git status | head -n 1"
 [user]
     name = João Campinhos
-    email = joao.campinhos@sky.uk
+    email = joao.campinhos@gmail.com
 [push]
     default = simple
 [diff]
@@ -19,3 +19,5 @@
     prompt = false
 [core]
     excludesfile = ~/.gitignore
+[safe]
+    directory = *
